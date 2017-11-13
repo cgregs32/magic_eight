@@ -1,21 +1,3 @@
-# Basic Objectives:
-#
-# - User inputs question
-# - Computer outputs random answer
-# - User inputs "QUIT"
-# - Computer outputs a goodbye message and exits
-# Bonus Objectives:
-#
-# - ability to add more answers:
-# - via easter egg question ("add_answers")
-# - do not let them add the same answer if the eight ball already has that answer
-# - ability to reset answers back to the original bank (hint: think arr.clone)
-# - via easter egg question ("reset_answers")
-# - ability to have eight ball print all answers
-# - via easter egg question ("print_answers")
-# -ability to use script arguments when the magic eight ball is started to do bonus functionality above
-# - for example ruby magic_eight.RB add_answers
-# this would start your script but instead of running the regular way you would be prompted to add answers first
 require_relative 'data'
 require 'pry'
 require 'colorize'
@@ -54,7 +36,7 @@ end
 def secret_input(data, type = 'Noun')
   puts "What #{type.light_blue} would you like to add?"
   input = STDIN.gets.strip
-  if data.downcase.include?(input.downcase)
+  if data.include?(input.downcase)
     puts "That's already a #{type.light_blue}"
   else
     @nouns << input
@@ -105,7 +87,7 @@ if ARGV.any?
   elsif ARGV.first.downcase === "print_answers"
     print_all
     magic_eight
-  else ARGV.first.downcase === "reset_answers"
+  elsif ARGV.first.downcase === "reset_answers"
     reset_all
   else
     magic_eight
